@@ -15,12 +15,16 @@ class Config:
     # MongoDB設定
     MONGODB_URI = os.getenv('MONGODB_URI')
     if not MONGODB_URI:
-        raise ValueError("MONGODB_URI環境変数が設定されていません")
+        print("⚠️  WARNING: MONGODB_URI環境変数が設定されていません")
+        # Vercel環境でのデバッグのため、一時的にエラーを無効化
+        # raise ValueError("MONGODB_URI環境変数が設定されていません")
 
     # Gemini API設定
     GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
     if not GEMINI_API_KEY:
-        raise ValueError("GEMINI_API_KEY環境変数が設定されていません")
+        print("⚠️  WARNING: GEMINI_API_KEY環境変数が設定されていません")
+        # Vercel環境でのデバッグのため、一時的にエラーを無効化
+        # raise ValueError("GEMINI_API_KEY環境変数が設定されていません")
 
     # Flask設定
     FLASK_ENV = os.getenv('FLASK_ENV', 'production')
