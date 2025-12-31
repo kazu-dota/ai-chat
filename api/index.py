@@ -40,8 +40,9 @@ def before_request():
 
 
 # ルートの登録
-app.register_blueprint(threads_bp, url_prefix='/api')
-app.register_blueprint(messages_bp, url_prefix='/api')
+# 一時的に無効化してデバッグ
+# app.register_blueprint(threads_bp, url_prefix='/api')
+# app.register_blueprint(messages_bp, url_prefix='/api')
 
 
 # シンプルなテストエンドポイント
