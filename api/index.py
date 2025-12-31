@@ -1,6 +1,16 @@
 """
 Flaskアプリケーションのメインエントリーポイント
 """
+import sys
+import os
+
+# Vercel環境でのパス設定
+if 'VERCEL' in os.environ:
+    # Vercel環境ではapi/ディレクトリをPYTHONPATHに追加
+    api_dir = os.path.dirname(os.path.abspath(__file__))
+    if api_dir not in sys.path:
+        sys.path.insert(0, api_dir)
+
 from flask import Flask, jsonify
 from flask_cors import CORS
 from config import config
