@@ -44,6 +44,18 @@ app.register_blueprint(threads_bp, url_prefix='/api')
 app.register_blueprint(messages_bp, url_prefix='/api')
 
 
+# シンプルなテストエンドポイント
+@app.route('/api/test', methods=['GET'])
+def test():
+    """最もシンプルなテストエンドポイント"""
+    import os
+    return jsonify({
+        'message': 'API is working!',
+        'vercel': os.getenv('VERCEL', 'not set'),
+        'mongodb_uri_exists': bool(os.getenv('MONGODB_URI')),
+        'gemini_key_exists': bool(os.getenv('GEMINI_API_KEY'))
+    })
+
 # ヘルスチェックエンドポイント
 @app.route('/api/health', methods=['GET'])
 def health_check():
