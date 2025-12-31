@@ -53,11 +53,20 @@ def health_check():
     Returns:
         JSON: ステータス情報
     """
+    import os
     db_status = 'connected' if db_service.db is not None else 'disconnected'
+
+    # 環境変数の存在確認（値は表示しない）
+    env_check = {
+        'MONGODB_URI': 'set' if os.getenv('MONGODB_URI') else 'missing',
+        'GEMINI_API_KEY': 'set' if os.getenv('GEMINI_API_KEY') else 'missing',
+        'VERCEL': 'true' if os.getenv('VERCEL') else 'false'
+    }
 
     return jsonify({
         'status': 'ok',
         'database': db_status,
+        'environment_variables': env_check,
         'environment': config.FLASK_ENV
     }), 200
 
