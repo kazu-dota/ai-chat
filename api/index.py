@@ -15,9 +15,8 @@ from flask import Flask, jsonify
 from flask_cors import CORS
 from config import config
 from services.db_service import db_service
-# 一時的に無効化してデバッグ
-# from routes.threads import threads_bp
-# from routes.messages import messages_bp
+from routes.threads import threads_bp
+from routes.messages import messages_bp
 
 # Flaskアプリケーションの作成
 app = Flask(__name__)
@@ -41,9 +40,8 @@ def before_request():
 
 
 # ルートの登録
-# 一時的に無効化してデバッグ
-# app.register_blueprint(threads_bp, url_prefix='/api')
-# app.register_blueprint(messages_bp, url_prefix='/api')
+app.register_blueprint(threads_bp, url_prefix='/api')
+app.register_blueprint(messages_bp, url_prefix='/api')
 
 
 # シンプルなテストエンドポイント
